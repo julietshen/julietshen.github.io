@@ -1,27 +1,251 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Sapling</title>
+<html lang="en">
 
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Juliet Shen</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!--FontAwesom icons -->
+    <script src="https://use.fontawesome.com/dc2e0b9e55.js"></script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
+
 <body>
 
-<div id="content">
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top" onclick=$("#menu-close").click();>Start Bootstrap</a>
+            </li>
+            <li>
+                <a href="#top" onclick=$("#menu-close").click();>Home</a>
+            </li>
+            <li>
+                <a href="#about" onclick=$("#menu-close").click();>About</a>
+            </li>
+            <li>
+                <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
+            </li>
+            <li>
+                <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
+            </li>
+        </ul>
+    </nav>
 
-<h1>Sapling Labs</h1>
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1>Juliet Shen</h1>
+            <h3>User advocate, product-driven engineer 
+            <br> (in training), and cat mom.</h3>
+            <br>
+            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+        </div>
+    </header>
 
-<img src="https://scontent-lax3-2.xx.fbcdn.net/v/t31.0-8/18155769_1393841874041399_3411157379387661632_o.jpg?oh=fa634f3d7a5693e2e558ad6f43ff752f&oe=59811C5F" width="300" height="300">
-<br>
-<p>Lorem ipsum dolor sit amet, dicta partiendo ne vim, eum erat ferri magna et. Ius ea putant civibus, vis congue pericula laboramus ad. Ne iusto mucius albucius sed. Ei blandit epicurei tacimates cum, sit ut fugit timeam euismod.
-<br>Persius quaerendum ex eum. Ne bonorum ancillae consequat vix. Ad vitae homero hendrerit pri. Quis malorum ei duo, ridens corpora blandit sit ex. Ne errem iriure dissentiunt has, ea cum dicit utamur.
-<br>
-Epicuri facilisi explicari ne cum. Mazim convenire ad sit, no sed ubique putant aperiri, veniam mucius cotidieque te sit. Ex quo habeo libris delectus, vel ex illum melius. Est saperet maiorum repudiare ex, an quo doming nonumes, brute nostro conceptam mea at. No mei summo nemore, vis eu appareat recusabo inciderint. Ad soluta ridens discere eam, labitur splendide cotidieque his in. Atomorum contentiones ei his, vis an tantas sapientem disputationi.
-<br>
-Nemore interesset at usu, minim iudicabit adolescens no vim. Ut ignota consectetuer reprehendunt qui, legimus dissentiet in nam, mel scripta molestiae ne. At vis aliquam sententiae. No nam dicant consul referrentur, pri cu quas electram mediocrem. Ex mei movet delectus antiopam.
-<br>
-Mel eu mucius facilisi sadipscing, saepe soluta sea et. Eum at liber eripuit, et justo phaedrum forensibus eum, an pro meis accumsan conclusionemque. Ei mentitum argumentum complectitur eam. Modus congue vituperata has id, natum error est ut. Ipsum homero erroribus est te, mediocrem consequuntur duo ei.</p>
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h2>About Juliet</h2>
+                    <p>Juliet Shen is a user advocate with 3+ years experience in startup environments. She currently resides in Los Angeles, CA with <a href="https://github.com/akvashi">her partner</a> and two cats. After spending the beginning of her career working in politics and nonprofits, Juliet made the jump to the tech industry to join some of the best and brightest at <a href="https://yourkarma.com">Karma WiFi</a>. In October of 2016, <a href="https://gotinder.com">Tinder</a> managed to lure her away from New York and to the west coast.</p>
 
-</div>
+                    <p>She's currently studying full-stack web development at <a href="https://codingbootcamp.uclaextension.edu/">UCLA Extension</a> under the tutelage of <a href="https://www.linkedin.com/in/cameronmanavian">Cameron Manavian</a> while she continues to work at Tinder. Passionate about user experience, she is the first to volunteer and the last to leave the office.</p>
+
+                    
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h2>My Work</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="https://julietshen.github.io/raccoons">
+                                    <img class="img-portfolio img-responsive" src="img/raccoons.png">
+                                </a>
+                                <p>I used HTML and CSS to build a basic website about raccoons, and used the Twitter embed tool to create a live stream of a popular internet raccoon account.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="https://julietshen.github.io/topnotch">
+                                    <img class="img-portfolio img-responsive" src="img/topnotch.png">
+                                </a>
+                                <p>I used HTML, CSS, and Bootstrap components to create a website and music blog. Work in progress.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+    <!-- Call to Action -->
+    <aside class="call-to-action bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>Connect With Me</h3>
+                    <a href="https://github.com/julietshen" class="btn btn-lg btn-dark">
+                    <i class="fa fa-github-square" aria-hidden="true"></i>
+                    Github</a>
+                    <a href="https://linkedin.com/in/julietshen/" class="btn btn-lg btn-dark">
+                    <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                    LinkedIn</a>
+                     <a href="https://stackoverflow.com/users/7530857/j-shen" class="btn btn-lg btn-dark">
+                     <i class="fa fa-stack-overflow" aria-hidden="true"></i>
+                     Stack Overflow</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Juliet Shen</strong>
+                    </h4>
+                    <p>Los Angeles, CA</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (480) 388-9883</li>
+                        <li><i class="fa fa-twitter" aria-hidden="true"></i> <a href="twitter.com/Juliet_Shen">@Juliet_Shen</a></li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:julietqshen@gmail.com">julietqshen@gmail.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Juliet Shen 2017</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+    // Disable Google Maps scrolling
+    // See http://stackoverflow.com/a/25904582/1607849
+    // Disable scroll zooming and bind back the click event
+    var onMapMouseleaveHandler = function(event) {
+        var that = $(this);
+        that.on('click', onMapClickHandler);
+        that.off('mouseleave', onMapMouseleaveHandler);
+        that.find('iframe').css("pointer-events", "none");
+    }
+    var onMapClickHandler = function(event) {
+            var that = $(this);
+            // Disable the click handler until the user leaves the map area
+            that.off('click', onMapClickHandler);
+            // Enable scrolling zoom
+            that.find('iframe').css("pointer-events", "auto");
+            // Handle the mouse leave event
+            that.on('mouseleave', onMapMouseleaveHandler);
+        }
+        // Enable map zooming with mouse scroll when the user clicks the map
+    $('.map').on('click', onMapClickHandler);
+    </script>
+
 </body>
+
 </html>
