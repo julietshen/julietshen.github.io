@@ -6,7 +6,7 @@ This is where I keep all the code for my little corner of the internet. I'll eve
 
 Just your standard personal website featuring:
 - A bit about the human behind the keyboard
-- How to reach me (if you dare)
+- How to reach me
 
 ## Tech Magic ✨
 
