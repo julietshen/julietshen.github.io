@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>blog - juliet shen</title>
   <link href="index.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
 <canvas id="stars-canvas"></canvas>
+
+<div class="theme-toggle">
+  <button onclick="setTheme('unmasked')" id="btn-unmasked" class="active">unmasked</button>
+  <button onclick="setTheme('masking')" id="btn-masking">masking</button>
+</div>
 
 <div class="site-header">
   <h1>Juliet Shen</h1>
@@ -114,6 +120,7 @@
   var throttle = 0;
   document.addEventListener('mousemove', function(e) {
     if (++throttle % 3 !== 0) return;
+    if (document.body.classList.contains('theme-masking')) return;
     var el = document.createElement('span');
     el.textContent = chars[Math.floor(Math.random() * chars.length)];
     el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;font-size:' +
@@ -145,6 +152,21 @@
         requestAnimationFrame(fall);
       })(el);
   });
+})();
+
+function setTheme(theme) {
+  if (theme === 'masking') {
+    document.body.classList.add('theme-masking');
+  } else {
+    document.body.classList.remove('theme-masking');
+  }
+  document.getElementById('btn-unmasked').classList.toggle('active', theme === 'unmasked');
+  document.getElementById('btn-masking').classList.toggle('active', theme === 'masking');
+  localStorage.setItem('site-theme', theme);
+}
+(function() {
+  var saved = localStorage.getItem('site-theme');
+  if (saved) setTheme(saved);
 })();
 </script>
 

@@ -5,11 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>juliet shen likes being online</title>
   <link href="index.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
 <!-- Starfield -->
 <canvas id="stars-canvas"></canvas>
+
+<!-- Theme Toggle -->
+<div class="theme-toggle">
+  <button onclick="setTheme('unmasked')" id="btn-unmasked" class="active">unmasked</button>
+  <button onclick="setTheme('masking')" id="btn-masking">masking</button>
+</div>
 
 <!-- Header -->
 <div class="site-header">
@@ -43,7 +50,7 @@
       <div class="site-module-header">hi i'm juliet</div>
       <div class="site-module-body">
 
-        <div style="margin: 10px 0;">
+        <div class="unmasked-only" style="margin: 10px 0;">
           <div class="blinkie-row">
             <span class="blinkie blinkie-green">asian american</span>
             <span class="blinkie blinkie-purple">bisexual</span>
@@ -56,7 +63,7 @@
           <strong>Name:</strong> julietshen<br>
           <strong>Country:</strong> USA<br>
           <strong>Location:</strong> Brooklyn, NYC<br>
-          <strong>Interests:</strong> the internet (good and bad), cooking, hiking, food, my cat<br>
+          <strong>Interests:</strong> weird stuff online, cooking, hiking, food, mysteries<br>
           <strong>Occupation:</strong> Head of Product @ <a href="https://roost.tools/">ROOST</a><br><br>
         </div>
 
@@ -82,7 +89,7 @@
     </div>
 
     <!-- Currently Reading -->
-    <div class="site-module">
+    <div class="site-module unmasked-only">
       <div class="site-module-header">currently reading</div>
       <div class="site-module-body">
         <div class="reading-item">
@@ -123,7 +130,7 @@
         </div>
 
         <div class="site-post-content">
-          <p>The first time I built my personal site, I coded it by hand. It was simple and maybe a little ugly, but I made it. The second time I built this site, I used AI so I can celebrate what I loved about the early web using technology born of the new web. It's pretty and silly, and I also made it.</p>
+          <p>The first time I built my personal site, I coded it by hand. It was simple and maybe a little ugly, but I made it. The second time I built this site, I used AI so I can celebrate what I loved about the early web using technology born of the new web. It's pretty and I also made it.</p>
 
           <p>I hope you like it.</p>
 
@@ -134,16 +141,31 @@
       </div>
     </div>
 
-    <!-- Currently Listening -->
-    <div class="site-module">
+    <!-- Currently Listening (unmasked only) -->
+    <div class="site-module unmasked-only">
       <div class="site-module-header">currently listening</div>
       <div class="site-module-body sidebar-embeds">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5UW4tA4j23YL6kDfRw3rWT?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/06SYfhYSo9iY3txHE6W9Dl?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2vHAPhWFSTcVRW5ahYppPx?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0EKUJ4OqrNWaHpNPODNTaf?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2xhGZ3WzOa3tir28y7Cb88?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0Pv0gNvopvimeuxFtz2f46?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
+      </div>
+    </div>
+
+    <!-- Resume Summary (masking only) -->
+    <div class="site-module masking-only">
+      <div class="site-module-header">experience</div>
+      <div class="site-module-body">
+        <div class="bio-content">
+          <p>Experienced product leader with years of machine learning and trust & safety experience at scale.</p>
+          <p><strong>ROOST</strong> — Head of Product, 2025–present<br>
+          <strong>Google</strong> — Senior Product Manager, 2023–2024<br>
+          <strong>Grindr</strong> — Product Director, 2022–2023<br>
+          <strong>Snap Inc.</strong> — Product Manager, 2017–2022</p>
+          <p><a href="resume.html">View full resume</a></p>
+        </div>
       </div>
     </div>
 
@@ -212,6 +234,7 @@
   var throttle = 0;
   document.addEventListener('mousemove', function(e) {
     if (++throttle % 3 !== 0) return;
+    if (document.body.classList.contains('theme-masking')) return;
     var el = document.createElement('span');
     el.textContent = chars[Math.floor(Math.random() * chars.length)];
     el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;font-size:' +
@@ -263,6 +286,22 @@
   });
   r.open('GET', 'https://shensational.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json');
   r.send();
+})();
+
+// Theme switcher
+function setTheme(theme) {
+  if (theme === 'masking') {
+    document.body.classList.add('theme-masking');
+  } else {
+    document.body.classList.remove('theme-masking');
+  }
+  document.getElementById('btn-unmasked').classList.toggle('active', theme === 'unmasked');
+  document.getElementById('btn-masking').classList.toggle('active', theme === 'masking');
+  localStorage.setItem('site-theme', theme);
+}
+(function() {
+  var saved = localStorage.getItem('site-theme');
+  if (saved) setTheme(saved);
 })();
 </script>
 
