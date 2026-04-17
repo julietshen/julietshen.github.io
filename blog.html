@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>blog - juliet shen</title>
+  <link href="index.css" rel="stylesheet">
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<div class="site-header">
+  <h1>Juliet Shen</h1>
+  <p class="subtitle">my corner of the internet</p>
+</div>
+
+<div class="site-topnav">
+  <a href="index.html">home</a> <span class="sep">-</span>
+  <a href="blog.html" class="active">blog</a> <span class="sep">-</span>
+  <a href="bio.html">bio</a> <span class="sep">-</span>
+  <a href="resume.html">resume</a>
+</div>
+
+<div class="site-marquee-bar">
+  <div class="site-marquee">
+    <span>~*~ thanks for visiting my site!! be nice to others!! subscribe 4 subscribe!! ~*~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~*~ thanks for visiting my site!! sign my guestbook!! subscribe 4 subscribe!! ~*~</span>
+  </div>
+</div>
+
+<div class="site-page">
+
+  <div class="site-module">
+    <div class="site-module-header">weblog</div>
+    <div class="site-module-body" id="blog-posts">
+      <!-- Posts are loaded from posts/index.json -->
+      <p style="color: var(--site-text-light);">loading posts...</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">
+  &copy; 2026 julietshen | powered by nostalgia | Brooklyn, NYC
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const STAR_COUNT = 200;
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.documentElement.scrollHeight;
+  }
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.3,
+        alpha: Math.random(),
+        delta: (Math.random() * 0.02 + 0.005) * (Math.random() < 0.5 ? 1 : -1),
+      });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const s of stars) {
+      s.alpha += s.delta;
+      if (s.alpha <= 0.1 || s.alpha >= 1) s.delta *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200, 210, 255, ${s.alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); createStars(); });
+  resize(); createStars(); draw();
+  window.addEventListener('load', () => { resize(); });
+})();
+
+// Blog loader
+(function() {
+  fetch('posts/index.json')
+    .then(r => r.json())
+    .then(posts => {
+      const container = document.getElementById('blog-posts');
+      if (!posts.length) {
+        container.innerHTML = '<p>no posts yet... check back soon!</p>';
+        return;
+      }
+      container.innerHTML = posts.map(post => `
+        <div class="blog-post-preview">
+          <div class="preview-date">${post.date}</div>
+          <div class="preview-title"><a href="posts/${post.file}">${post.title}</a></div>
+          <div class="preview-snippet">${post.snippet}</div>
+        </div>
+      `).join('');
+    })
+    .catch(() => {
+      document.getElementById('blog-posts').innerHTML =
+        '<p>no posts yet... check back soon!</p>';
+    });
+})();
+
+// Cursor star trail
+(function() {
+  var chars = ['✦', '✧', '⋆', '˚', '✩', '★', '☆'];
+  var colors = ['#ffd700', '#ffec8b', '#fff4c1', '#f0c420', '#ffe066', '#daa520', '#fff8dc'];
+  var throttle = 0;
+  document.addEventListener('mousemove', function(e) {
+    if (++throttle % 3 !== 0) return;
+    var el = document.createElement('span');
+    el.textContent = chars[Math.floor(Math.random() * chars.length)];
+    el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;font-size:' +
+      (Math.random() * 12 + 8) + 'px;left:' + (e.clientX + (Math.random() - 0.5) * 40) +
+      'px;top:' + (e.clientY + (Math.random() - 0.5) * 40) +
+      'px;color:' + colors[Math.floor(Math.random() * colors.length)] +
+      ';opacity:1;text-shadow:0 0 4px rgba(255,215,0,0.6);';
+      document.body.appendChild(el);
+      (function(el) {
+        var vy = Math.random() * 0.8 + 0.3;
+        var vx = (Math.random() - 0.5) * 0.6;
+        var opacity = 1;
+        var x = parseFloat(el.style.left);
+        var y = parseFloat(el.style.top);
+        function fall() {
+          opacity -= 0.008;
+          y += vy;
+          x += vx;
+          vy += 0.02;
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.opacity = opacity;
+          if (opacity > 0) {
+            requestAnimationFrame(fall);
+          } else {
+            el.remove();
+          }
+        }
+        requestAnimationFrame(fall);
+      })(el);
+  });
+})();
+</script>
+
+<script data-goatcounter="https://shensational.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
