@@ -1,272 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Juliet Shen</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
-        rel="stylesheet" type="text/css">
-
-    <!--FontAwesom icons -->
-    
-    <script src="https://example.com/fontawesome/vVERSION/js/all.js" data-auto-a11y="true"></script>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>juliet shen likes being online</title>
+  <link href="index.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
-
 <body>
 
-    <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top" onclick=$("#menu-close").click();>Navigation</a>
-            </li>
-            <li>
-                <a href="#top" onclick=$("#menu-close").click();>Home</a>
-            </li>
-            <li>
-                <a href="#about" onclick=$("#menu-close").click();>About</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
-            </li>
-        </ul>
-    </nav>
+<!-- Starfield -->
+<canvas id="stars-canvas"></canvas>
 
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Juliet Shen</h1>
-            <h3>Product person working on open source safety tools
-            </h3>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">Dive deeper</a>
+<!-- Theme Toggle -->
+<div class="theme-toggle">
+  <button onclick="setTheme('unmasked')" id="btn-unmasked" class="active">unmasked</button>
+  <button onclick="setTheme('masking')" id="btn-masking">masking</button>
+</div>
+
+<!-- Header -->
+<div class="site-header">
+  <h1>Juliet Shen</h1>
+  <p class="subtitle">my corner of the internet</p>
+</div>
+
+<!-- Top Nav -->
+<div class="site-topnav">
+  <a href="index.html">home</a> <span class="sep">-</span>
+  <a href="blog.html">blog</a> <span class="sep">-</span>
+  <a href="bio.html">bio</a> <span class="sep">-</span>
+  <a href="resume.html">resume</a>
+</div>
+
+<!-- Marquee -->
+<div class="site-marquee-bar">
+  <div class="site-marquee">
+    <span>~*~ thanks for visiting my site!! be nice to others!! subscribe 4 subscribe!! ~*~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~*~ thanks for visiting my site!! sign my guestbook!! subscribe 4 subscribe!! ~*~</span>
+  </div>
+</div>
+
+<!-- Main layout -->
+<div class="site-container">
+
+  <!-- LEFT SIDEBAR -->
+  <div class="site-sidebar">
+
+    <!-- Profile -->
+    <div class="site-module">
+      <div class="site-module-header">hi i'm juliet</div>
+      <div class="site-module-body">
+
+        <div class="unmasked-only" style="margin: 10px 0;">
+          <div class="blinkie-row">
+            <span class="blinkie blinkie-green">asian american</span>
+            <span class="blinkie blinkie-purple">bisexual</span>
+          </div>
         </div>
-    </header>
 
-    <!-- About -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-left">
-                    <h2>Details</h2>
-                    <p>I've always wanted to know how the world worked in order to make it a better place.</p>
-                    <p>I started
-                        asking questions and learned how to think critically by studying political science and sociology
-                        at SUNY Albany. I found my way to tech by way of customer support and Trust & Safety and have
-                        since
-                        dedicated my career to building tools and technology that protect people online.
-                        My areas of expertise include content moderation systems, child safety, abuse detection and
-                        enforcement, internal tools, and artificial intelligence/machine learning.
-                    </p>
-                    <p>These days, I'm the Head of Product at <a href="https://roost.tools/">ROOST.tools</a> where I'm
-                        building open source tools for anyone to use to make the internet a safer place for all.
-                        In my private sector life, I was a Product Lead at Google where I works on scaled spam and
-                        abuse on the Workspace product. Before Google, I was the Director of
-                        Product for Trust & Safety at Grindr and Snapchat’s first Product Manager focused on Trust &
-                        Safety where I built out the technical infrastructure for online safety.
-                    </p>
+        <img src="img/sprite.png" alt="juliet" class="profile-avatar">
 
-                    <p>When I'm not at a computer, I love to cook and explore the outdoors, especially the
-                        mountains. I live in NYC as a proud cat parent.
-                    </p>
-
-
-                </div>
-            </div>
-            <!-- /.row -->
+        <div class="profile-info">
+          <strong>Name:</strong> julietshen<br>
+          <strong>Country:</strong> USA<br>
+          <strong>Location:</strong> Brooklyn, NYC<br>
+          <strong>Interests:</strong> weird stuff online, cooking, hiking, food, mysteries<br>
+          <strong>Occupation:</strong> Head of Product @ <a href="https://roost.tools/">ROOST</a><br><br>
         </div>
-        <!-- /.container -->
-    </section>
 
-    <!-- Portfolio -->
-     <!-- <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>My Work</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="https://julietshen.github.io/raccoons">
-                                    <img class="img-portfolio img-responsive" src="img/raccoons.png">
-                                </a>
-                                <p>I used HTML and CSS to build a basic website about raccoons, and used the Twitter
-                                    embed tool to create a live stream of a popular internet raccoon account.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="https://julietshen.github.io/topnotch">
-                                    <img class="img-portfolio img-responsive" src="img/topnotch.png">
-                                </a>
-                                <p>I used HTML, CSS, and Bootstrap components to create a website and music blog. Work
-                                    in progress.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div> 
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
+        <div class="visitor-counter" id="visitor-counter">
+          <span class="counter-digit">-</span>
+          <span class="counter-digit">-</span>
+          <span class="counter-digit">-</span>
+          <span class="counter-digit">-</span>
+          <span class="counter-digit">-</span>
+          <span class="counter-digit">-</span>
         </div>
-        <!-- /.container -->
-    </section> -->
+      </div>
+    </div>
 
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h3>Find Me Elsewhere</h3>
-                    <a href="https://github.com/julietshen" class="btn btn-lg btn-dark">
-                        <i class="fa fa-github-square" aria-hidden="true"></i>
-                        Github</a>
-                    <a href="https://linkedin.com/in/julietshen/" class="btn btn-lg btn-dark">
-                        <i class="fa-brands fa-linkedin"></i>LinkedIn</a>
-                    <a href="https://bsky.app/profile/julietshen.bsky.social" class="btn btn-lg btn-dark">
-                        <i class="fa-brands fa-bluesky"></i>
-                        Bluesky</a>
-                </div>
-            </div>
+    <!-- Links -->
+    <div class="site-module">
+      <div class="site-module-header">Find Me Elsewhere</div>
+      <div class="site-module-body">
+        <a href="https://github.com/julietshen">github</a>
+        <a href="https://linkedin.com/in/julietshen/">linkedin</a>
+        <a href="https://bsky.app/profile/julietshen.bsky.social">bluesky</a>
+      </div>
+    </div>
+
+    <!-- Currently Reading -->
+    <div class="site-module unmasked-only">
+      <div class="site-module-header">currently reading</div>
+      <div class="site-module-body">
+        <div class="reading-item">
+          <span class="reading-icon">&#128214;</span>
+          <div class="reading-info">
+            <a href="https://www.rachelreidwrites.com/the-long-game" class="reading-title">The Long Game</a>
+            <span class="reading-author">by Rachel Reid</span>
+          </div>
         </div>
-    </aside>
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Juliet Shen</strong>
-                    </h4>
-                    <p>Brooklyn, NYC</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (862) 803-0168</li>
-                        <li><i class="fa fa-twitter" aria-hidden="true"></i> <a
-                                href="https://bsky.app/profile/julietshen.bsky.social">@julietshen</a></li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i> <a
-                                href="mailto:julietqshen@gmail.com">juliet@roost.tools</a>
-                        </li>
-                    </ul>
-                    <br>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Juliet Shen 2025</p>
-                </div>
-            </div>
+        <div class="reading-item">
+          <span class="reading-icon">&#128214;</span>
+          <div class="reading-info">
+            <a href="https://theanarchistlibrary.org/library/audre-lorde-the-master-s-tools-will-never-dismantle-the-master-s-house" class="reading-title">The Master’s Tools Will Never Dismantle the Master’s House</a>
+            <span class="reading-author">Audre Lorde</span>
+          </div>
         </div>
-        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-    </footer>
+        <div class="reading-item">
+          <span class="reading-icon">&#128214;</span>
+          <div class="reading-info">
+            <a href="https://en.wikipedia.org/wiki/Bloodchild_and_Other_Stories" class="reading-title">Bloodchild and Other Stories</a>
+            <span class="reading-author">Octavia E. Butler</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+  </div>
 
-    <!-- Custom Theme JavaScript -->
-    <script>
-        // Closes the sidebar menu
-        $("#menu-close").click(function (e) {
-            e.preventDefault();
-            $("#sidebar-wrapper").toggleClass("active");
-        });
-        // Opens the sidebar menu
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#sidebar-wrapper").toggleClass("active");
-        });
-        // Scrolls to the selected menu item on the page
-        $(function () {
-            $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function () {
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    if (target.length) {
-                        $('html,body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000);
-                        return false;
-                    }
-                }
-            });
-        });
-        //#to-top button appears after scrolling
-        var fixed = false;
-        $(document).scroll(function () {
-            if ($(this).scrollTop() > 250) {
-                if (!fixed) {
-                    fixed = true;
-                    // $('#to-top').css({position:'fixed', display:'block'});
-                    $('#to-top').show("slow", function () {
-                        $('#to-top').css({
-                            position: 'fixed',
-                            display: 'block'
-                        });
-                    });
-                }
-            } else {
-                if (fixed) {
-                    fixed = false;
-                    $('#to-top').hide("slow", function () {
-                        $('#to-top').css({
-                            display: 'none'
-                        });
-                    });
-                }
-            }
-        });
-        // Disable Google Maps scrolling
-        // See http://stackoverflow.com/a/25904582/1607849
-        // Disable scroll zooming and bind back the click event
-        var onMapMouseleaveHandler = function (event) {
-            var that = $(this);
-            that.on('click', onMapClickHandler);
-            that.off('mouseleave', onMapMouseleaveHandler);
-            that.find('iframe').css("pointer-events", "none");
+  <!-- MAIN CONTENT -->
+  <div class="site-main">
+
+    <!-- Post 1 -->
+    <div class="site-post">
+      <div class="site-module-header">hello</div>
+      <div class="site-post-body">
+        <div class="site-post-meta">
+        </div>
+
+        <div class="site-post-content">
+          <p>The first time I built my personal site, I coded it by hand. It was simple and maybe a little ugly, but I made it. The second time I built this site, I used AI so I can celebrate what I loved about the early web using technology born of the new web. It's pretty and I also made it.</p>
+
+          <p>I hope you like it.</p>
+
+          <p>I used to write a lot, and I'm trying to <a href="/blog.html">get back into it.</a> Get to know me on a <a href="/bio.html">personal</a> and <a href="/resume.html">professional</a> level. </p>
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Currently Listening (unmasked only) -->
+    <div class="site-module unmasked-only">
+      <div class="site-module-header">currently listening</div>
+      <div class="site-module-body sidebar-embeds">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5UW4tA4j23YL6kDfRw3rWT?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/06SYfhYSo9iY3txHE6W9Dl?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0EKUJ4OqrNWaHpNPODNTaf?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2xhGZ3WzOa3tir28y7Cb88?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0Pv0gNvopvimeuxFtz2f46?theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+      </div>
+    </div>
+
+    <!-- Resume Summary (masking only) -->
+    <div class="site-module masking-only">
+      <div class="site-module-header">experience</div>
+      <div class="site-module-body">
+        <div class="bio-content">
+          <p>Experienced product leader with years of machine learning and trust & safety experience at scale.</p>
+          <p><strong>ROOST</strong> — Head of Product, 2025–present<br>
+          <strong>Google</strong> — Senior Product Manager, 2023–2024<br>
+          <strong>Grindr</strong> — Product Director, 2022–2023<br>
+          <strong>Snap Inc.</strong> — Product Manager, 2017–2022</p>
+          <p><a href="resume.html">View full resume</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="site-footer">
+  powered by nostalgia and claude | Brooklyn, NYC<br>
+</div>
+
+<!-- Starfield Script -->
+<script>
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const STAR_COUNT = 200;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.documentElement.scrollHeight;
+  }
+
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.3,
+        alpha: Math.random(),
+        delta: (Math.random() * 0.02 + 0.005) * (Math.random() < 0.5 ? 1 : -1),
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const s of stars) {
+      s.alpha += s.delta;
+      if (s.alpha <= 0.1 || s.alpha >= 1) s.delta *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200, 210, 255, ${s.alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); createStars(); });
+  resize();
+  createStars();
+  draw();
+
+  // Re-size canvas when content loads (for scroll height)
+  window.addEventListener('load', () => { resize(); });
+})();
+
+// Cursor star trail
+(function() {
+  var chars = ['✦', '✧', '⋆', '˚', '✩', '★', '☆'];
+  var colors = ['#ffd700', '#ffec8b', '#fff4c1', '#f0c420', '#ffe066', '#daa520', '#fff8dc'];
+  var throttle = 0;
+  document.addEventListener('mousemove', function(e) {
+    if (++throttle % 3 !== 0) return;
+    if (document.body.classList.contains('theme-masking')) return;
+    var el = document.createElement('span');
+    el.textContent = chars[Math.floor(Math.random() * chars.length)];
+    el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;font-size:' +
+      (Math.random() * 12 + 8) + 'px;left:' + (e.clientX + (Math.random() - 0.5) * 40) +
+      'px;top:' + (e.clientY + (Math.random() - 0.5) * 40) +
+      'px;color:' + colors[Math.floor(Math.random() * colors.length)] +
+      ';opacity:1;text-shadow:0 0 4px rgba(255,215,0,0.6);';
+      document.body.appendChild(el);
+      (function(el) {
+        var vy = Math.random() * 0.8 + 0.3;
+        var vx = (Math.random() - 0.5) * 0.6;
+        var opacity = 1;
+        var x = parseFloat(el.style.left);
+        var y = parseFloat(el.style.top);
+        function fall() {
+          opacity -= 0.008;
+          y += vy;
+          x += vx;
+          vy += 0.02;
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.opacity = opacity;
+          if (opacity > 0) {
+            requestAnimationFrame(fall);
+          } else {
+            el.remove();
+          }
         }
-        var onMapClickHandler = function (event) {
-            var that = $(this);
-            // Disable the click handler until the user leaves the map area
-            that.off('click', onMapClickHandler);
-            // Enable scrolling zoom
-            that.find('iframe').css("pointer-events", "auto");
-            // Handle the mouse leave event
-            that.on('mouseleave', onMapMouseleaveHandler);
-        }
-        // Enable map zooming with mouse scroll when the user clicks the map
-        $('.map').on('click', onMapClickHandler);
-    </script>
+        requestAnimationFrame(fall);
+      })(el);
+  });
+})();
+
+// Visitor counter
+(function() {
+  var r = new XMLHttpRequest();
+  r.addEventListener('load', function() {
+    if (r.status === 200) {
+      var data = JSON.parse(r.responseText);
+      var count = data.count.replace(/\u00a0/g, '').replace(/,/g, '');
+      var digits = count.padStart(6, '0').split('');
+      var el = document.getElementById('visitor-counter');
+      if (el) {
+        el.innerHTML = digits.map(function(d) {
+          return '<span class="counter-digit">' + d + '</span>';
+        }).join('');
+      }
+    }
+  });
+  r.open('GET', 'https://shensational.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json');
+  r.send();
+})();
+
+// Theme switcher
+function setTheme(theme) {
+  if (theme === 'masking') {
+    document.body.classList.add('theme-masking');
+  } else {
+    document.body.classList.remove('theme-masking');
+  }
+  document.getElementById('btn-unmasked').classList.toggle('active', theme === 'unmasked');
+  document.getElementById('btn-masking').classList.toggle('active', theme === 'masking');
+  localStorage.setItem('site-theme', theme);
+}
+(function() {
+  var saved = localStorage.getItem('site-theme');
+  if (saved) setTheme(saved);
+})();
+</script>
+
+<script data-goatcounter="https://shensational.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
-
 </html>

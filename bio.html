@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bio - juliet shen</title>
+  <link href="index.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<div class="theme-toggle">
+  <button onclick="setTheme('unmasked')" id="btn-unmasked" class="active">unmasked</button>
+  <button onclick="setTheme('masking')" id="btn-masking">masking</button>
+</div>
+
+<div class="site-header">
+  <h1>Juliet Shen</h1>
+  <p class="subtitle">my corner of the internet</p>
+</div>
+
+<div class="site-topnav">
+  <a href="index.html">home</a> <span class="sep">-</span>
+  <a href="blog.html">blog</a> <span class="sep">-</span>
+  <a href="bio.html" class="active">bio</a> <span class="sep">-</span>
+  <a href="resume.html">resume</a>
+</div>
+
+<div class="site-marquee-bar">
+  <div class="site-marquee">
+    <span>~*~ thanks for visiting my site!! be nice to others!! subscribe 4 subscribe!! ~*~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~*~ thanks for visiting my site!! sign my guestbook!! subscribe 4 subscribe!! ~*~</span>
+  </div>
+</div>
+
+<div class="site-page">
+
+  <div class="site-module">
+    <div class="site-module-header">about me</div>
+    <div class="site-module-body">
+      <div class="bio-content">
+        <p>I've always wanted to know how the world worked in order to make it a better place.</p>
+
+        <p>I grew up in Arizona, but New York made me who I am. Throughout it all, I was chronically online. Still am, for better or worse.</p>
+
+        <p>I started asking questions and learned how to think critically by studying political science and sociology at SUNY Albany. I found my way to tech by way of customer support and Trust & Safety and have since dedicated my career to building tools and technology that protect people online.</p>
+
+        <p>I like learning new things, and I'm good at it. I'm also good at picking up new hobbies (and then dropping them), being curious, and meeting new people. I'm bad at watching movies, organizing cables, and being quiet.</p>
+
+        <p>I used to run a blog about Asian American culture and politics. I spent a long time working on teams that keep people safe online. These days, I'm building <a href="https://roost.tools/">open source tools</a> so anyone can use the same kind of technology I once helped create.</p>
+
+        <p>When I'm not at a computer, I love to cook and explore the outdoors, especially the mountains. I live in NYC with my partner and our cat, Mau Mau.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-module">
+    <div class="site-module-header">find me elsewhere</div>
+    <div class="site-module-body">
+      <a href="https://github.com/julietshen">github</a>
+      <a href="https://linkedin.com/in/julietshen/">linkedin</a>
+      <a href="https://bsky.app/profile/julietshen.bsky.social">bluesky</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">
+  &copy; 2026 julietshen | powered by nostalgia | Brooklyn, NYC
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const STAR_COUNT = 200;
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.documentElement.scrollHeight;
+  }
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.3,
+        alpha: Math.random(),
+        delta: (Math.random() * 0.02 + 0.005) * (Math.random() < 0.5 ? 1 : -1),
+      });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const s of stars) {
+      s.alpha += s.delta;
+      if (s.alpha <= 0.1 || s.alpha >= 1) s.delta *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200, 210, 255, ${s.alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); createStars(); });
+  resize(); createStars(); draw();
+  window.addEventListener('load', () => { resize(); });
+})();
+
+// Cursor star trail
+(function() {
+  var chars = ['✦', '✧', '⋆', '˚', '✩', '★', '☆'];
+  var colors = ['#ffd700', '#ffec8b', '#fff4c1', '#f0c420', '#ffe066', '#daa520', '#fff8dc'];
+  var throttle = 0;
+  document.addEventListener('mousemove', function(e) {
+    if (++throttle % 3 !== 0) return;
+    if (document.body.classList.contains('theme-masking')) return;
+    var el = document.createElement('span');
+    el.textContent = chars[Math.floor(Math.random() * chars.length)];
+    el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;font-size:' +
+      (Math.random() * 12 + 8) + 'px;left:' + (e.clientX + (Math.random() - 0.5) * 40) +
+      'px;top:' + (e.clientY + (Math.random() - 0.5) * 40) +
+      'px;color:' + colors[Math.floor(Math.random() * colors.length)] +
+      ';opacity:1;text-shadow:0 0 4px rgba(255,215,0,0.6);';
+      document.body.appendChild(el);
+      (function(el) {
+        var vy = Math.random() * 0.8 + 0.3;
+        var vx = (Math.random() - 0.5) * 0.6;
+        var opacity = 1;
+        var x = parseFloat(el.style.left);
+        var y = parseFloat(el.style.top);
+        function fall() {
+          opacity -= 0.008;
+          y += vy;
+          x += vx;
+          vy += 0.02;
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.opacity = opacity;
+          if (opacity > 0) {
+            requestAnimationFrame(fall);
+          } else {
+            el.remove();
+          }
+        }
+        requestAnimationFrame(fall);
+      })(el);
+  });
+})();
+
+function setTheme(theme) {
+  if (theme === 'masking') {
+    document.body.classList.add('theme-masking');
+  } else {
+    document.body.classList.remove('theme-masking');
+  }
+  document.getElementById('btn-unmasked').classList.toggle('active', theme === 'unmasked');
+  document.getElementById('btn-masking').classList.toggle('active', theme === 'masking');
+  localStorage.setItem('site-theme', theme);
+}
+(function() {
+  var saved = localStorage.getItem('site-theme');
+  if (saved) setTheme(saved);
+})();
+</script>
+
+<script data-goatcounter="https://shensational.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
