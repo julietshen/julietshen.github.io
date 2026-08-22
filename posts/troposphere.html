@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>troposphere - juliet shen</title>
+  <link href="../index.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<div class="theme-toggle">
+  <button onclick="setTheme('unmasked')" id="btn-unmasked" class="active">unmasked</button>
+  <button onclick="setTheme('masking')" id="btn-masking">masking</button>
+</div>
+
+<div class="site-header">
+  <h1>Juliet Shen</h1>
+  <p class="subtitle">my corner of the internet</p>
+</div>
+
+<div class="site-topnav">
+  <a href="../index.html">home</a> <span class="sep">-</span>
+  <a href="../blog.html" class="active">blog</a> <span class="sep">-</span>
+  <a href="../bio.html">bio</a> <span class="sep">-</span>
+  <a href="../resume.html">resume</a>
+</div>
+
+<div class="site-marquee-bar">
+  <div class="site-marquee">
+    <span>~*~ thanks for visiting my site!! be nice to others!! subscribe 4 subscribe!! ~*~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~*~ thanks for visiting my site!! sign my guestbook!! subscribe 4 subscribe!! ~*~</span>
+  </div>
+</div>
+
+<div class="site-page">
+
+  <div class="site-module">
+    <div class="site-module-header">Saturday, August 22, 2026</div>
+    <div class="site-module-body">
+      <a href="../blog.html" class="blog-back-link">&laquo; back to all posts</a>
+      <div class="site-post-title">troposphere: plumbing for the atmosphere</div>
+
+      <div class="blog-full-post">
+        <p>I spent a Saturday building a piece of trust and safety infrastructure, and I want to tell you what it is and why it matters, without drowning you in acronyms.</p>
+
+        <p>Most people know Bluesky. Fewer know that underneath it is an open protocol, the AT Protocol, that a lot of us have started calling "the atmosphere." The idea is that the social web shouldn't belong to one company. You can run your own server, build your own app, and still talk to everyone else on the network. It's the closest thing we have right now to the pluralist internet I keep writing about, where more than one company gets a say in how our shared spaces work.</p>
+
+        <p>But an open network has an open problem: who keeps it safe? On a normal platform, one company moderates everything behind the curtain. On an open network, moderation has to travel from place to place. The atmosphere handles this with "labelers" - little services that look at a post or an account and attach a label to it, like "spam" or "graphic media." Apps subscribe to the labelers they trust, and each app decides what to do with a label: hide it, blur it, put a warning on it, or ignore it entirely. Nobody is forced to accept anyone else's judgment. It's moderation as opt-in, which is a genuinely hopeful design.</p>
+
+        <p>Bluesky built a tool called Ozone for running a labeler. It's good, but it's their stack, shaped around their setup. At <a href="https://roost.tools" target="_blank" rel="noopener">ROOST</a>, where I work, we build Coop, an open-source console where human reviewers work through a queue of flagged content and decide what to do. The gap was this: if you were building your own thing on the atmosphere, with your own kinds of posts, your own server, and your own app for viewing them, there was no clean way to plug it into Coop and moderate it the way the network expects. The two didn't speak the same language.</p>
+
+        <p>So we built the translator. It's called troposphere, after the layer of the atmosphere where birds actually fly, and it's the plumbing between the open network and Coop. I keep calling it plumbing because that's honestly what it is: pipes that carry the right things to the right places.</p>
+
+        <p>Four pipes, really. It pulls content off the network into Coop so reviewers can actually see it. It publishes labels, signed with your own cryptographic key, so the rest of the network can trust that a label really came from you and not an impostor. It catches reports from users and drops them into Coop's review queue. And when you decide something has to go, it can take that content down on your own server, not just slap a label on it.</p>
+
+        <p>The part I care about most: it doesn't assume you're Bluesky. You can have your own kinds of content, your own server, your own app for reading it, and troposphere still works. Coop itself stays clean and general, and never has to learn anything specific about the atmosphere. That matters, because the whole point of open infrastructure is that a small community, a co-op, or a project in another country can run real safety tooling without bending themselves around one big company's assumptions.</p>
+
+        <p>Here's the honest part. I built most of this in a day, working alongside Claude Code, an AI coding agent. I designed it, made the decisions, and read the code, and it did a lot of the typing and testing at my direction. I pointed it at the live Bluesky firehose and watched real labels get signed and verified against a real key, real reports get routed, real content get taken down in a test server. I mention this not as a brag but because I think we owe people transparency about how software gets made now. The documentation says plainly that it was generated by an AI, and I'm the human you reach out to if something is wrong.</p>
+
+        <p>It's open source under Apache 2.0. The code lives on <a href="https://github.com/julietshen/troposphere" target="_blank" rel="noopener">GitHub</a> and also on <a href="https://tangled.org/julietshen.bsky.social/troposphere" target="_blank" rel="noopener">Tangled</a>, which is git hosting built on the atmosphere itself. It felt right to keep the source where the network is.</p>
+
+        <p>None of this fixes the internet. But it's another block in the toolbox, another thing a person can pick up and run for the people they are trying to protect. I want the work of keeping communities safe to belong to those communities, not to be rented back to them by whoever owns the servers. This is a small piece of that. Aggressive, feral protection, one pipe at a time.</p>
+      </div>
+      <div class="site-post-tags">
+        <a href="#">#trustAndSafety</a> <a href="#">#openSource</a> <a href="#">#atproto</a> <a href="#">#moderation</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">
+  &copy; 2026 julietshen | powered by nostalgia | Brooklyn, NYC
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const STAR_COUNT = 200;
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.documentElement.scrollHeight;
+  }
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.3,
+        alpha: Math.random(),
+        delta: (Math.random() * 0.02 + 0.005) * (Math.random() < 0.5 ? 1 : -1),
+      });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const s of stars) {
+      s.alpha += s.delta;
+      if (s.alpha <= 0.1 || s.alpha >= 1) s.delta *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200, 210, 255, ${s.alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); createStars(); });
+  resize(); createStars(); draw();
+  window.addEventListener('load', () => { resize(); });
+})();
+
+// Cursor star trail
+(function() {
+  var chars = ['✦', '✧', '⋆', '˚', '✩', '★', '☆'];
+  var colors = ['#ffd700', '#ffec8b', '#fff4c1', '#f0c420', '#ffe066', '#daa520', '#fff8dc'];
+  var throttle = 0;
+  document.addEventListener('mousemove', function(e) {
+    if (++throttle % 3 !== 0) return;
+    if (document.body.classList.contains('theme-masking')) return;
+    var el = document.createElement('span');
+    el.textContent = chars[Math.floor(Math.random() * chars.length)];
+    el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;font-size:' +
+      (Math.random() * 12 + 8) + 'px;left:' + (e.clientX + (Math.random() - 0.5) * 40) +
+      'px;top:' + (e.clientY + (Math.random() - 0.5) * 40) +
+      'px;color:' + colors[Math.floor(Math.random() * colors.length)] +
+      ';opacity:1;text-shadow:0 0 4px rgba(255,215,0,0.6);';
+      document.body.appendChild(el);
+      (function(el) {
+        var vy = Math.random() * 0.8 + 0.3;
+        var vx = (Math.random() - 0.5) * 0.6;
+        var opacity = 1;
+        var x = parseFloat(el.style.left);
+        var y = parseFloat(el.style.top);
+        function fall() {
+          opacity -= 0.008;
+          y += vy;
+          x += vx;
+          vy += 0.02;
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.opacity = opacity;
+          if (opacity > 0) {
+            requestAnimationFrame(fall);
+          } else {
+            el.remove();
+          }
+        }
+        requestAnimationFrame(fall);
+      })(el);
+  });
+})();
+
+function setTheme(theme) {
+  if (theme === 'masking') {
+    document.body.classList.add('theme-masking');
+  } else {
+    document.body.classList.remove('theme-masking');
+  }
+  document.getElementById('btn-unmasked').classList.toggle('active', theme === 'unmasked');
+  document.getElementById('btn-masking').classList.toggle('active', theme === 'masking');
+  localStorage.setItem('site-theme', theme);
+}
+(function() {
+  var saved = localStorage.getItem('site-theme');
+  if (saved) setTheme(saved);
+})();
+</script>
+
+<script data-goatcounter="https://shensational.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>
