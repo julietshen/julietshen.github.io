@@ -36,110 +36,44 @@
 
 <div class="site-page">
 
-  <!-- Experience -->
+  <p class="sifa-source" id="sifa-status">
+    powered by my <a href="https://sifa.id/p/julietshen.bsky.social" target="_blank" rel="noopener">Sifa profile</a>
+    &middot; <span id="sifa-status-text">loading&hellip;</span>
+  </p>
+
+  <!-- Experience (from id.sifa.profile.position) -->
   <div class="site-module">
     <div class="site-module-header">experience</div>
     <div class="site-module-body">
-      <div class="resume-section">
-
-        <div class="resume-entry">
-          <div class="role">Head of Product</div>
-          <div class="company">ROOST</div>
-          <div class="dates">2025 - Present</div>
-          <div class="desc">
-            <ul>
-              <li>Building open source safety tools</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="resume-entry">
-          <div class="role">Senior Product Manager</div>
-          <div class="company">Google</div>
-          <div class="dates">2023 - 2024</div>
-          <div class="desc">
-            <ul>
-              <li>Defined and executed strategy for tackling spam and abuse on Drive, Editors, and Enterprise Fraud and Abuse</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="resume-entry">
-          <div class="role">Product Director</div>
-          <div class="company">Grindr</div>
-          <div class="dates">2022 - 2023</div>
-          <div class="desc">
-            <ul>
-              <li>Led the anti-abuse product team</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="resume-entry">
-          <div class="role">Product Manager, Platform Integrity</div>
-          <div class="company">Snap Inc.</div>
-          <div class="dates">2017 - 2022</div>
-          <div class="desc">
-            <ul>
-              <li>Led product development for spam, abuse, and safety-related UI features, internal tools, and ML systems</li>
-              <li>Launch team for Spotlight; built content moderation systems at scale through ML and human review</li>
-              <li>Led the formation of Snap's first Privacy & Safety principles</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="resume-entry">
-          <div class="role">Community</div>
-          <div class="company">Tinder</div>
-          <div class="desc">
-            <ul>
-              <li>Moderation and anti-abuse</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="resume-entry">
-          <div class="role">Operations Associate</div>
-          <div class="company">Karma</div>
-                    <div class="desc">
-            <ul>
-              <li>Customer support and experience</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
+      <div class="resume-section" id="mod-experience"></div>
     </div>
   </div>
 
-  <!-- Skills -->
+  <!-- Skills (from id.sifa.profile.skill) -->
   <div class="site-module">
     <div class="site-module-header">skills</div>
     <div class="site-module-body">
-      <div class="bio-content">
-        <p>Product Management, Cross Functional Leadership, Trust & Safety, Machine Learning, Child Safety</p>
-      </div>
+      <div class="bio-content" id="mod-skills"></div>
     </div>
   </div>
 
-  <!-- Publications -->
+  <!-- Publications (from id.sifa.profile.publication) -->
   <div class="site-module">
     <div class="site-module-header">publications</div>
     <div class="site-module-body">
-      <div class="resume-section">
-        <div class="resume-entry">
-          <div class="role"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5369158" style="display:inline">Four Functional Quadrants for Trust & Safety Tools: Detection, Investigation, Review & Enforcement (DIRE)</a></div>
-          <div class="company">Camille Francois et al.</div>
-        </div>
-        <div class="resume-entry">
-          <div class="role"><a href="https://arxiv.org/abs/2506.22183" style="display:inline">A Different Approach to AI Safety: Proceedings from the Columbia Convening on Openness in Artificial Intelligence and AI Safety</a></div>
-          <div class="company">Camille Francois et al.</div>
-        </div>
-      </div>
+      <div class="resume-section" id="mod-publications"></div>
     </div>
   </div>
 
-  <!-- Patents -->
+  <!-- Honors & Awards (from id.sifa.profile.honor) -->
+  <div class="site-module">
+    <div class="site-module-header">honors &amp; awards</div>
+    <div class="site-module-body">
+      <div class="resume-section" id="mod-honors"></div>
+    </div>
+  </div>
+
+  <!-- Patents (static: not part of the Sifa profile) -->
   <div class="site-module">
     <div class="site-module-header">patents</div>
     <div class="site-module-body">
@@ -152,21 +86,153 @@
     </div>
   </div>
 
-  <!-- Education -->
+  <!-- Education (from id.sifa.profile.education) -->
   <div class="site-module">
     <div class="site-module-header">education</div>
     <div class="site-module-body">
-      <div class="resume-section">
-        <div class="resume-entry">
-          <div class="role">BA Sociology & BA Political Science</div>
-          <div class="company">SUNY Albany</div>
-          <div class="dates">2011 - 2015</div>
-        </div>
-      </div>
+      <div class="resume-section" id="mod-education"></div>
     </div>
   </div>
 
 </div>
+
+<script>
+// ---- Sifa profile → resume rendering -------------------------------------
+// Reads id.sifa.profile.* records from the AT Protocol PDS and renders them
+// into the modules above. Edit your profile at https://sifa.id and this page
+// updates itself on next load. DID is stable; the PDS is resolved at runtime.
+(function() {
+  var DID = 'did:plc:5ekiam2ybpgrbmpbhylb7ama'; // julietshen.bsky.social
+  var PDS_FALLBACK = 'https://puffball.us-east.host.bsky.network';
+  var MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function fmtDate(s) {
+    if (!s) return '';
+    var m = /^(\d{4})(?:-(\d{2}))?/.exec(s);
+    if (!m) return esc(s);
+    return m[2] ? MONTHS[parseInt(m[2], 10)] + ' ' + m[1] : m[1];
+  }
+  function dateRange(a, b) {
+    var start = fmtDate(a);
+    var end = b ? fmtDate(b) : 'Present';
+    if (!start) return b ? end : '';
+    return start + ' &ndash; ' + end;
+  }
+  // descending sort by a date-ish string field (YYYY / YYYY-MM sorts lexically)
+  function byDesc(field) {
+    return function(x, y) { return String(y[field] || '').localeCompare(String(x[field] || '')); };
+  }
+  function entry(role, company, dates, desc) {
+    return '<div class="resume-entry">' +
+      '<div class="role">' + role + '</div>' +
+      (company ? '<div class="company">' + company + '</div>' : '') +
+      (dates ? '<div class="dates">' + dates + '</div>' : '') +
+      (desc ? '<div class="desc"><ul><li>' + desc + '</li></ul></div>' : '') +
+      '</div>';
+  }
+
+  async function resolvePds(did) {
+    try {
+      var r = await fetch('https://plc.directory/' + did);
+      if (r.ok) {
+        var d = await r.json();
+        var svc = (d.service || []).find(function(s) { return s.id === '#atproto_pds'; });
+        if (svc && svc.serviceEndpoint) return svc.serviceEndpoint;
+      }
+    } catch (e) { /* fall through */ }
+    return PDS_FALLBACK;
+  }
+  async function listRecords(pds, did, col) {
+    var url = pds + '/xrpc/com.atproto.repo.listRecords?repo=' +
+      encodeURIComponent(did) + '&collection=' + col + '&limit=100';
+    var r = await fetch(url);
+    if (!r.ok) throw new Error(col + ' ' + r.status);
+    var j = await r.json();
+    return (j.records || []).map(function(x) { return x.value; });
+  }
+
+  function renderExperience(items) {
+    items.sort(byDesc('startedAt'));
+    return items.map(function(p) {
+      return entry(esc(p.title), esc(p.company), dateRange(p.startedAt, p.endedAt), esc(p.description));
+    }).join('');
+  }
+  function renderSkills(items) {
+    return '<p>' + items.map(function(s) { return esc(s.name); }).filter(Boolean).join(', ') + '</p>';
+  }
+  function renderPublications(items) {
+    items.sort(byDesc('publishedAt'));
+    return items.map(function(p) {
+      var title = p.url
+        ? '<a href="' + esc(p.url) + '" style="display:inline" target="_blank" rel="noopener">' + esc(p.title) + '</a>'
+        : esc(p.title);
+      var meta = [p.publisher, Array.isArray(p.authors) ? p.authors.join(', ') : null]
+        .filter(Boolean).map(esc).join(' &middot; ');
+      return entry(title, meta, fmtDate(p.publishedAt), '');
+    }).join('');
+  }
+  function renderHonors(items) {
+    items.sort(byDesc('awardedAt'));
+    return items.map(function(h) {
+      return entry(esc(h.title), esc(h.issuer), fmtDate(h.awardedAt), esc(h.description));
+    }).join('');
+  }
+  function renderEducation(items) {
+    items.sort(byDesc('endedAt'));
+    return items.map(function(e) {
+      var degree = [e.degree, e.fieldOfStudy].filter(Boolean).map(esc).join(', ');
+      return entry(degree || esc(e.institution), degree ? esc(e.institution) : '',
+        dateRange(e.startedAt, e.endedAt), esc(e.description));
+    }).join('');
+  }
+
+  var MODULES = [
+    { id: 'mod-experience',   col: 'id.sifa.profile.position',    render: renderExperience },
+    { id: 'mod-skills',       col: 'id.sifa.profile.skill',       render: renderSkills },
+    { id: 'mod-publications', col: 'id.sifa.profile.publication', render: renderPublications },
+    { id: 'mod-honors',       col: 'id.sifa.profile.honor',       render: renderHonors },
+    { id: 'mod-education',    col: 'id.sifa.profile.education',    render: renderEducation }
+  ];
+
+  function setStatus(t) { var el = document.getElementById('sifa-status-text'); if (el) el.innerHTML = t; }
+
+  (async function init() {
+    MODULES.forEach(function(m) {
+      var el = document.getElementById(m.id);
+      if (el) el.innerHTML = '<p class="sifa-loading">loading&hellip;</p>';
+    });
+    var pds;
+    try { pds = await resolvePds(DID); }
+    catch (e) { pds = PDS_FALLBACK; }
+
+    var ok = 0;
+    await Promise.all(MODULES.map(async function(m) {
+      var el = document.getElementById(m.id);
+      if (!el) return;
+      try {
+        var records = await listRecords(pds, DID, m.col);
+        el.innerHTML = records.length ? m.render(records) : '<p class="sifa-loading">&mdash;</p>';
+        ok++;
+      } catch (e) {
+        el.innerHTML = '<p class="sifa-loading">couldn’t load this section</p>';
+      }
+    }));
+
+    if (ok === 0) {
+      setStatus('couldn’t reach the profile right now — ' +
+        '<a href="https://sifa.id/p/julietshen.bsky.social" target="_blank" rel="noopener">view it on Sifa</a>');
+    } else {
+      setStatus('live from the AT&nbsp;Protocol network');
+    }
+  })();
+})();
+</script>
 
 <div class="site-footer">
   &copy; 2026 julietshen | powered by nostalgia | Brooklyn, NYC

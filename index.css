@@ -695,6 +695,29 @@ body {
   margin-bottom: 3px;
 }
 
+/* Sifa-driven resume */
+.sifa-source {
+  font-size: 9px;
+  color: var(--site-text-light);
+  text-align: center;
+  margin: 0 0 14px 0;
+  letter-spacing: 0.5px;
+}
+
+.sifa-source a {
+  color: var(--site-link);
+}
+
+.sifa-source a:hover {
+  color: var(--site-link-hover);
+}
+
+.sifa-loading {
+  color: var(--site-text-light);
+  font-size: 11px;
+  font-style: italic;
+}
+
 /* Bio page */
 .bio-content {
   font-size: 12px;
